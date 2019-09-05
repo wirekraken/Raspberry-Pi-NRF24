@@ -1,11 +1,11 @@
 #include <iostream>
-// #include <RF24/nRF24L01.h>
-#include <RF24/RF24.h>
+//#include <RF24/nRF24L01.h>
+#include <RF24/RF24.h> // SPI и работа с GPIO (BCM номерация) реализована уже в библиотеке
 
 using namespace std;
 
-#define PIN_CE 17
-#define PIN_CSN 0
+#define PIN_CE 17 // (chip enable)
+#define PIN_CSN 0 // (chip select not)
 
 uint8_t pipeNumber;
 uint8_t payloadSize;
@@ -52,22 +52,15 @@ int main() {
       // Читаем принятые данные в массив payload указав размер этого массива в байтах
       radio.read(&payload, payloadSize);
 
-      cout << "Pipe number : " << (int) pipeNumber << " ";
-      cout << "Payload size : " << (int) payloadSize << " ";    
-      cout << "Data: ";
-
       for (uint8_t i = 0; i < payloadSize; i++) {
         receivedData += payload[i];
       }
 
-      cout << receivedData << endl;
+      cout << "Pipe number : " << (int) pipeNumber << " ";
+      cout << "Payload size : " << (int) payloadSize << " ";    
+      cout << "Data: " << receivedData << endl;
 
-      string FIFObuffer = "Data from buffer";
-      char ackData[sizeof(FIFObuffer)];
-
-      for (uint8_t i = 0; i < sizeof(ackData); i++) {
-        ackData[i] = FIFObuffer[i];
-      }
+      char ackData[] = "Data from buffer";
 
       // Помещаем данные в буфер FIFO. Как только будет получен пакет то данные из буфера
       // будут отправлены этому передатчику вместе с пакетом подтверждения приема его данных
@@ -76,4 +69,3 @@ int main() {
   }
   return 0;
 }
-
