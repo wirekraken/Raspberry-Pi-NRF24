@@ -1,6 +1,6 @@
 #include <iostream>
 //#include <RF24/nRF24L01.h>
-#include <RF24/RF24.h> // SPI и работа с GPIO (BCM номерация) реализована уже в библиотеке
+#include <RF24/RF24.h> // SPI и работа с GPIO (BCM нумерация) реализована уже в библиотеке
 
 using namespace std;
 
@@ -12,7 +12,7 @@ uint8_t payloadSize;
 
 int main() {
 
-  RF24 radio(PIN_CE, PIN_CSN); // создаём объект radio (chip enable, chip select)
+  RF24 radio(PIN_CE, PIN_CSN); // создаём объект radio
   radio.begin();
   // канал передачи данных (от 0 до 125), 5 - на частоте 2,405 ГГц
   radio.setChannel(5);

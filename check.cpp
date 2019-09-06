@@ -1,6 +1,6 @@
 #include <iostream>
-// #include <RF24/nRF24L01.h>
-#include <RF24/RF24.h>
+// #include <nRF24L01.h>
+#include <RF24.h>
 
 using namespace std;
 
@@ -13,8 +13,9 @@ int main() {
 	radio.begin();
 
 	// Проверка на поддержку модуля библиотекой RF24 (при правильном подключении)
-	if (radio.isPVariant()){
-                radio.printDetails();
+	if (radio.isPVariant()) {
+		cout << "The module is supported" << endl;
+		radio.printDetails(); 
 	}
 	else {
 		cout << "Unknown module" << endl;

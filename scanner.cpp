@@ -48,7 +48,7 @@ int main() {
         radio.setChannel(i);
  
         radio.startListening();
-        delayMicroseconds(128); // каждый канал слушаем по 128 мкс
+        delayMicroseconds(130); // т.к. время переключения между модуля каналами состовляет 130 мкс
         radio.stopListening();
  
         // Проверка наличия несущей частоты на выбранном канале (частоте)
